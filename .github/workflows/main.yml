@@ -1,4 +1,4 @@
-name: 🚀 Build & Test NoteApp
+name: 🚀 Build & Test StoreApp
 
 on:
   push:

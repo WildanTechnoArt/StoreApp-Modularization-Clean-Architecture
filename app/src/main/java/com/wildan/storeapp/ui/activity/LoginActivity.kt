@@ -6,22 +6,21 @@ import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.wildan.core.ui.helper.ViewBindingExt.viewBinding
+import com.wildan.core.extension.clearAuthDataStore
+import com.wildan.core.extension.getBooleanData
+import com.wildan.core.extension.getStringData
+import com.wildan.core.ui.helper.initProgressButton
+import com.wildan.core.extension.saveDataStore
+import com.wildan.core.ui.helper.setLoading
+import com.wildan.core.ui.helper.show
+import com.wildan.core.extension.showToast
+import com.wildan.core.utils.Constant
+import com.wildan.core.utils.handleErrorApi
 import com.wildan.storeapp.R
 import com.wildan.storeapp.databinding.ActivityLoginBinding
-import com.wildan.storeapp.extensions.ViewBindingExt.viewBinding
-import com.wildan.storeapp.extensions.clearAuthDataStore
-import com.wildan.storeapp.extensions.getBooleanData
-import com.wildan.storeapp.extensions.getStringData
-import com.wildan.storeapp.extensions.initProgressButton
-import com.wildan.storeapp.extensions.isNotEmpty
-import com.wildan.storeapp.extensions.saveDataStore
-import com.wildan.storeapp.extensions.setLoading
-import com.wildan.storeapp.extensions.show
-import com.wildan.storeapp.extensions.showToast
 import com.wildan.storeapp.model.LoginRequest
 import com.wildan.storeapp.ui.viewmodel.AuthViewModel
-import com.wildan.storeapp.utils.Constant
-import com.wildan.storeapp.utils.handleErrorApi
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,8 +33,8 @@ class LoginActivity : AppCompatActivity() {
     private val viewModelAuth: AuthViewModel by viewModels()
     private var loginUsername: String? = null
     private var loginPassword: String? = null
-    private var mUsername: String? = null
-    private var mPassword: String? = null
+    private var mUsername = ""
+    private var mPassword = ""
     private var isRemember = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -2,20 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
-    kotlin("kapt")
-    id("androidx.navigation.safeargs.kotlin")
-    id("com.google.dagger.hilt.android")
-    id("kotlin-parcelize")
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.navigation.safeargs.kotlin)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace = "com.wildan.storeapp"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.wildan.storeapp"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -32,6 +31,20 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+    }
+
+    flavorDimensions += "api"
+
+    productFlavors {
+        create("fakeStore") {
+            dimension = "api"
+            buildConfigField("String", "BASE_URL", "\"https://fakestoreapi.com/\"")
+        }
+        create("spreeDemo") {
+            dimension = "api"
+            buildConfigField("String", "BASE_URL", "\"https://demo.spreecommerce.org/api/v2/\"")
+            applicationIdSuffix = ".demo"
         }
     }
 
@@ -52,53 +65,76 @@ android {
 
 dependencies {
 
+    // Core AndroidX
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.multidex)
+
+    // UI Components
     implementation(libs.material)
     implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.androidx.multidex)
-    implementation(libs.androidx.paging)
-    implementation (libs.androidx.room.paging)
-    implementation (libs.androidx.room.ktx)
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    annotationProcessor(libs.androidx.room.compiler)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.github.razir.progressbutton)
-    implementation(libs.androidx.datastore)
-    implementation(libs.androidx.vectordrawable)
-    implementation(libs.github.bumptech.glide)
-    implementation(libs.androidx.activity)
-    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui)
     implementation(libs.com.facebook.shimmer)
-    ksp(libs.github.bumptech.ksp)
-    implementation(libs.hilt.android) // Hilt dependencies
-    implementation (libs.hilt.android.testing)
-    ksp(libs.hilt.android.compiler) // Hilt annotation processor
+    implementation(libs.androidx.vectordrawable)
+    implementation(libs.androidx.paging)
+
+    // Lifecycle & ViewModel
     implementation(libs.androidx.lifecycle.common)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.androidx.constraintlayout)
+
+    // Navigation
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
+    // Room Database
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    ksp(libs.androidx.room.compiler)
+    annotationProcessor(libs.androidx.room.compiler)
+
+    // DataStore & Preferences
+    implementation(libs.androidx.datastore)
+
+    // Image Loading
+    implementation(libs.github.bumptech.glide)
+    ksp(libs.github.bumptech.ksp)
+
+    // Dependency Injection (Hilt)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.android.testing)
+
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+    // Networking
     implementation(libs.com.squareup.retrofit)
     implementation(libs.com.squareup.gson)
     implementation(libs.com.squareup.rxjava2)
-    implementation(libs.org.jetbrains.serialization)
     implementation(libs.google.code.gson)
-    implementation(AndroidDependencies.HTTP_LOG)
+    implementation(libs.logging.interceptor)
+    implementation(libs.org.jetbrains.serialization)
+
+    // Testing
     testImplementation(libs.junit)
-    debugImplementation (libs.leakcanary.android)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.core.testing)
+
     androidTestImplementation(libs.androidx.junit)
-    testImplementation (libs.mockito.core)
-    testImplementation (libs.mockito.inline)
-
-    // Hilt testing dependencies
-    testImplementation (libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.android.compiler)
-    testImplementation (libs.kotlinx.coroutines.test)
-    testImplementation (libs.androidx.core.testing)
-
     androidTestImplementation(libs.androidx.espresso.core)
+    debugImplementation(libs.leakcanary.android)
+
+    // Hilt Testing (AndroidTest)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
+
+    // Import Module
+    implementation(project(":core"))
 }

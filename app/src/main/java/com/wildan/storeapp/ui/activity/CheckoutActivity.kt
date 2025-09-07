@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wildan.core.ui.helper.ViewBindingExt.createAlertDialog
+import com.wildan.core.ui.helper.ViewBindingExt.viewBinding
+import com.wildan.core.extension.showAlertDialog
+import com.wildan.core.extension.toRupiah
 import com.wildan.storeapp.databinding.ActivityCheckoutBinding
 import com.wildan.storeapp.databinding.AlertTransactionSuccessBinding
-import com.wildan.storeapp.extensions.ViewBindingExt.createAlertDialog
-import com.wildan.storeapp.extensions.ViewBindingExt.viewBinding
-import com.wildan.storeapp.extensions.showAlertDialog
-import com.wildan.storeapp.extensions.toRupiah
 import com.wildan.storeapp.ui.adapter.CartAdapter
 import com.wildan.storeapp.ui.viewmodel.DatabaseViewModel
 import com.wildan.storeapp.ui.viewmodel.LocalDataViewModelFactory

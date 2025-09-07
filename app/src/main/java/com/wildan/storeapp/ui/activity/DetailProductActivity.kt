@@ -8,19 +8,19 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.wildan.core.ui.helper.ViewBindingExt.createAlertDialog
+import com.wildan.core.ui.helper.ViewBindingExt.viewBinding
+import com.wildan.core.extension.showToast
+import com.wildan.core.extension.toRupiah
+import com.wildan.core.utils.Constant
+import com.wildan.core.utils.handleErrorApi
 import com.wildan.storeapp.R
 import com.wildan.storeapp.data.database.ProductEntity
 import com.wildan.storeapp.databinding.ActivityDetailProductBinding
 import com.wildan.storeapp.databinding.DialogInsertQuantityBinding
-import com.wildan.storeapp.extensions.ViewBindingExt.createAlertDialog
-import com.wildan.storeapp.extensions.ViewBindingExt.viewBinding
-import com.wildan.storeapp.extensions.showToast
-import com.wildan.storeapp.extensions.toRupiah
 import com.wildan.storeapp.ui.viewmodel.DatabaseViewModel
 import com.wildan.storeapp.ui.viewmodel.LocalDataViewModelFactory
 import com.wildan.storeapp.ui.viewmodel.ProductViewModel
-import com.wildan.storeapp.utils.Constant
-import com.wildan.storeapp.utils.handleErrorApi
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

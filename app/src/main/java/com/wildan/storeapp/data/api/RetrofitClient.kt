@@ -1,5 +1,6 @@
 package com.wildan.storeapp.data.api
 
+import com.wildan.storeapp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -7,8 +8,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-
-    private const val BASE_URL = "https://fakestoreapi.com/"
 
     val instance: BaseApiService by lazy {
         val retrofit: Retrofit
@@ -23,7 +22,7 @@ object RetrofitClient {
         }.build()
 
         retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

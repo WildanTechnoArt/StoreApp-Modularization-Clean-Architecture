@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.wildan.core.extension.toRupiah
+import com.wildan.core.utils.Constant
 import com.wildan.storeapp.R
 import com.wildan.storeapp.data.database.ProductEntity
 import com.wildan.storeapp.databinding.ItemCartBinding
-import com.wildan.storeapp.extensions.toRupiah
 import com.wildan.storeapp.ui.activity.DetailProductActivity
-import com.wildan.storeapp.utils.Constant
 
 class CartAdapter(private val isCheckout: Boolean, private val deleteItem: (ProductEntity) -> Unit) :
     RecyclerView.Adapter<CartAdapter.Holder>() {
