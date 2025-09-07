@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
     namespace = "com.wildan.core"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
@@ -49,6 +51,11 @@ dependencies {
 
     // DataStore & Preferences
     implementation(libs.androidx.datastore)
+
+    // Dependency Injection (Hilt)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.android.testing)
 
     // Networking
     implementation(libs.com.squareup.retrofit)

@@ -2,20 +2,19 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
-    kotlin("kapt")
-    id("androidx.navigation.safeargs.kotlin")
-    id("com.google.dagger.hilt.android")
-    id("kotlin-parcelize")
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.navigation.safeargs.kotlin)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace = "com.wildan.storeapp"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.wildan.storeapp"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -78,6 +77,7 @@ dependencies {
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.com.facebook.shimmer)
     implementation(libs.androidx.vectordrawable)
+    implementation(libs.androidx.paging)
 
     // Lifecycle & ViewModel
     implementation(libs.androidx.lifecycle.common)
