@@ -2,9 +2,9 @@ name: 🚀 Build & Test StoreApp
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   pull_request:
-    branches: [main, develop]
+    branches: [main]
 
 jobs:
   compile-noteapp-job:
